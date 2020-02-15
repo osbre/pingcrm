@@ -1,12 +1,12 @@
 /* Reset */
-/* @import 'reset'; */
-/* @import 'tailwindcss/base'; */
-/* @import 'tailwindcss/components'; */
+@import 'reset';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
 
 /* /1* Components *1/ */
-/* @import 'buttons'; */
-/* @import 'form'; */
-/* @import 'nprogress'; */
+@import 'buttons';
+@import 'form';
+@import 'nprogress';
 
 /* /1* Utilities *1/ */
-/* @import 'tailwindcss/utilities'; */
+@import 'tailwindcss/utilities';

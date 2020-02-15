@@ -1,3 +1,12 @@
-/* This file is for your main application css. */
+/* Reset */
+/* @import 'reset'; */
+/* @import 'tailwindcss/base'; */
+/* @import 'tailwindcss/components'; */
 
-@import "./phoenix.css";
+/* /1* Components *1/ */
+/* @import 'buttons'; */
+/* @import 'form'; */
+/* @import 'nprogress'; */
+
+/* /1* Utilities *1/ */
+/* @import 'tailwindcss/utilities'; */

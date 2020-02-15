@@ -21,6 +21,8 @@ defmodule PingWeb do
     quote do
       use Phoenix.Controller, namespace: PingWeb
 
+      import InertiaPhoenix.Controller, only: [render_inertia: 3]
+
       import Plug.Conn
       import PingWeb.Gettext
       alias PingWeb.Router.Helpers, as: Routes

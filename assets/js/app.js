@@ -1,17 +1,17 @@
-// We need to import the CSS so that webpack will load it.
-// The MiniCssExtractPlugin is used to separate it out into
-// its own CSS file.
-import css from "../css/app.css"
+import css from "../css/app.css";
+import "phoenix_html";
+import React from "react";
+import { render } from "react-dom";
+import { InertiaApp } from "@inertiajs/inertia-react";
 
-// webpack automatically bundles all modules in your
-// entry points. Those entry points can be configured
-// in "webpack.config.js".
-//
-// Import dependencies
-//
-import "phoenix_html"
+const app = document.getElementById("app");
 
-// Import local files
-//
-// Local files can be imported directly using relative paths, for example:
-// import socket from "./socket"
+render(
+  <InertiaApp
+    initialPage={JSON.parse(app.dataset.page)}
+    resolveComponent={name =>
+      import(`@/Pages/${name}`).then(module => module.default)
+    }
+  />,
+  app
+);

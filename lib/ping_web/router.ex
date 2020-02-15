@@ -19,7 +19,7 @@ defmodule PingWeb.Router do
 
     get "/", PageController, :index
     get "/about", PageController, :about
-    get "/login", PageController, :login
+    resources "/session", Users.SessionController
   end
 
   # Other scopes may use custom stacks.

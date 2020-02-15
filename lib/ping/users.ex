@@ -1,6 +1,6 @@
-defmodule Ping.Accounts do
+defmodule Ping.Users do
   alias Ping.Repo
-  alias Ping.Accounts.User
+  alias Ping.Users.User
 
   def get_user(id) do
     Repo.get(User, id)

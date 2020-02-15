@@ -1,5 +1,6 @@
 defmodule PingWeb.Router do
   use PingWeb, :router
+  use Pow.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -10,16 +11,31 @@ defmodule PingWeb.Router do
     plug InertiaPhoenix.Plug
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: PingWeb.AuthErrorHandler
+  end
+
+  pipeline :not_authenticated do
+    plug Pow.Plug.RequireNotAuthenticated,
+      error_handler: PingWeb.AuthErrorHandler
+  end
+
+  # https://hexdocs.pm/pow/custom_controllers.html
+  scope "/", PingWeb.Users do
+    pipe_through [:browser, :not_authenticated]
+
+    # get "/signup", RegistrationController, :new, as: :signup
+    # post "/signup", RegistrationController, :create, as: :signup
+    get "/login", SessionController, :new, as: :login
+    post "/login", SessionController, :create, as: :login
   end
 
   scope "/", PingWeb do
-    pipe_through :browser
+    pipe_through [:browser, :protected]
 
     get "/", PageController, :index
-    get "/about", PageController, :about
-    resources "/session", Users.SessionController
+    delete "/logout", SessionController, :delete, as: :logout
   end
 
   # Other scopes may use custom stacks.

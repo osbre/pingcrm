@@ -29,7 +29,7 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post("/session", values).then(() => {
+    Inertia.post("/login", values).then(() => {
       setSending(false);
     });
   }

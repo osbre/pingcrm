@@ -3,6 +3,13 @@ import "phoenix_html";
 import React from "react";
 import { render } from "react-dom";
 import { InertiaApp } from "@inertiajs/inertia-react";
+import axios from "axios";
+
+// Tell Axios to send the CSRF token (taken from the cookie)
+// in the header named as "x-csrf-token", as this is the name
+// expected by Phoenix
+// axios.defaults.xsrfHeaderName = "x-csrf-token";
+axios.defaults.xsrfHeaderName = "x-csrf-token";
 
 const app = document.getElementById("app");
 

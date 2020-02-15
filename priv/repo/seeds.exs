@@ -9,3 +9,4 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+Ping.Repo.insert!(%Ping.Accounts.User{email: "johndoe@example.com"})

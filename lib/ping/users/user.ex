@@ -7,4 +7,9 @@ defmodule Ping.Users.User do
 
     timestamps()
   end
+
+  def changeset(user_or_changeset, attrs) do
+    user_or_changeset
+    |> pow_changeset(attrs)
+  end
 end

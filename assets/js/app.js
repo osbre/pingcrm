@@ -5,11 +5,13 @@ import { render } from "react-dom";
 import { InertiaApp } from "@inertiajs/inertia-react";
 import axios from "axios";
 
-// Tell Axios to send the CSRF token (taken from the cookie)
-// in the header named as "x-csrf-token", as this is the name
-// expected by Phoenix
-// axios.defaults.xsrfHeaderName = "x-csrf-token";
-axios.defaults.xsrfHeaderName = "x-csrf-token";
+axios.interceptors.request.use(function(config) {
+  const token = document
+    .querySelector("meta[name='csrf-token']")
+    .getAttribute("content");
+  config.headers["x-csrf-token"] = token;
+  return config;
+});
 
 const app = document.getElementById("app");
 

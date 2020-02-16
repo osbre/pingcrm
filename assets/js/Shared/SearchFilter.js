@@ -1,27 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Inertia } from '@inertiajs/inertia';
-import { usePage } from '@inertiajs/inertia-react';
-import { usePrevious } from 'react-use';
-import SelectInput from '@/Shared/SelectInput';
-import pickBy from 'lodash/pickBy';
+import React, { useState, useEffect, useRef } from "react";
+import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-react";
+import { usePrevious } from "react-use";
+import SelectInput from "@/Shared/SelectInput";
+import pickBy from "lodash/pickBy";
 
 export default () => {
   const { filters } = usePage();
   const [opened, setOpened] = useState(false);
 
   const [values, setValues] = useState({
-    role: filters.role || '', // role is used only on users page
-    search: filters.search || '',
-    trashed: filters.trashed || ''
+    role: filters.role || "", // role is used only on users page
+    search: filters.search || "",
+    trashed: filters.trashed || ""
   });
 
   const prevValues = usePrevious(values);
 
   function reset() {
     setValues({
-      role: '',
-      search: '',
-      trashed: ''
+      role: "",
+      search: "",
+      trashed: ""
     });
   }
 
@@ -30,7 +30,7 @@ export default () => {
     if (prevValues) {
       const query = Object.keys(pickBy(values)).length
         ? pickBy(values)
-        : { remember: 'forget' };
+        : { remember: "forget" };
       Inertia.replace(route(route().current(), query));
     }
   }, [values]);
@@ -51,15 +51,15 @@ export default () => {
     <div className="flex items-center w-full max-w-md mr-4">
       <div className="relative flex w-full bg-white shadow rounded">
         <div
-          style={{ top: '100%' }}
-          className={`absolute ${opened ? '' : 'hidden'}`}
+          style={{ top: "100%" }}
+          className={`absolute ${opened ? "" : "hidden"}`}
         >
           <div
             onClick={() => setOpened(false)}
             className="bg-black opacity-25 fixed inset-0 z-20"
           ></div>
           <div className="relative w-64 mt-2 px-4 py-6 shadow-lg bg-white rounded z-30">
-            {filters.hasOwnProperty('role') && (
+            {filters.hasOwnProperty("role") && (
               <SelectInput
                 className="mb-4"
                 label="Role"

@@ -1,10 +1,10 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import Icon from '@/Shared/Icon';
-import SearchFilter from '@/Shared/SearchFilter';
-import Pagination from '@/Shared/Pagination';
+import React from "react";
+import Helmet from "react-helmet";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import Icon from "@/Shared/Icon";
+import SearchFilter from "@/Shared/SearchFilter";
+import Pagination from "@/Shared/Pagination";
 
 export default () => {
   const { users } = usePage();
@@ -16,7 +16,7 @@ export default () => {
         <h1 className="mb-8 font-bold text-3xl">Users</h1>
         <div className="mb-6 flex justify-between items-center">
           <SearchFilter />
-          <InertiaLink className="btn-indigo" href={route('users.create')}>
+          <InertiaLink className="btn-indigo" href="/users">
             <span>Create</span>
             <span className="hidden md:inline"> User</span>
           </InertiaLink>
@@ -41,7 +41,7 @@ export default () => {
                   >
                     <td className="border-t">
                       <InertiaLink
-                        href={route('users.edit', id)}
+                        href={`/users/${id}/edit`}
                         className="px-6 py-4 flex items-center focus:text-indigo-700"
                       >
                         {photo && (
@@ -62,7 +62,7 @@ export default () => {
                     <td className="border-t">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('users.edit', id)}
+                        href={`/users/${id}/edit`}
                         className="px-6 py-4 flex items-center focus:text-indigo"
                       >
                         {email}
@@ -71,16 +71,16 @@ export default () => {
                     <td className="border-t">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('users.edit', id)}
+                        href={`/users/${id}/edit`}
                         className="px-6 py-4 flex items-center focus:text-indigo"
                       >
-                        {owner ? 'Owner' : 'User'}
+                        {owner ? "Owner" : "User"}
                       </InertiaLink>
                     </td>
                     <td className="border-t w-px">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('users.edit', id)}
+                        href={`/users/${id}/edit`}
                         className="px-4 flex items-center"
                       >
                         <Icon

@@ -1,6 +1,5 @@
 defmodule PingWeb.Users.SessionController do
   use PingWeb, :controller
-  alias Ping.Users.User
 
   def new(conn, _params) do
     render_inertia(conn, "Auth/Login")

@@ -1,6 +1,6 @@
 # Pingcrm Phoenix/React
 
-A sample app demonstrating how to integrate React with Phoenix using Inertia.js.
+A Phoenix and React demo app using inertiajs. (WIP)
 
 ## Phoenix Adapter
 

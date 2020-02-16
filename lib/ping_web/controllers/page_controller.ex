@@ -1,7 +1,7 @@
-defmodule PingWeb.PageController do
+defmodule PingWeb.DashboardController do
   use PingWeb, :controller
 
-  def login(conn, _params) do
-    render_inertia(conn, "Auth/Login", props: %{errors: %{}})
+  def index(conn, _params) do
+    render_inertia(conn, "Dashboard/Index")
   end
 end

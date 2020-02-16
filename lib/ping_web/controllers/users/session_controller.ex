@@ -6,19 +6,28 @@ defmodule PingWeb.Users.SessionController do
     render_inertia(conn, "Auth/Login")
   end
 
-  def create(conn, _params) do
-    case Ping.Users.get_user(1) do
-      %User{} = user ->
+  def create(conn, params) do
+    conn
+    |> Pow.Plug.authenticate_user(params)
+    |> case do
+      {:ok, conn} ->
         conn
-        |> assign(:current_user, user)
-        |> put_session(:user_id, user.id)
-        |> put_flash(:info, "Welcome Back!")
-        |> render_inertia("Auth/Login")
-      _ ->
+        |> put_flash(:info, "Welcome back!")
+        |> redirect(to: Routes.dashboard_path(conn, :index))
+
+      {:error, conn} ->
+        # changeset = Pow.Plug.change_user(conn, conn.params["user"])
+
         conn
-        |> put_flash(:error, "User not found")
-        |> put_status(:see_other)
+        |> put_flash(:error, "Invalid email or password")
         |> redirect(to: Routes.login_path(conn, :new))
     end
   end
+
+  def delete(conn, _params) do
+    conn
+    |> Pow.Plug.delete()
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
 end
+

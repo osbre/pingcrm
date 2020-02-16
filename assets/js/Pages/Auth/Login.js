@@ -11,7 +11,7 @@ export default () => {
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     email: "johndoe@example.com",
-    password: "secret",
+    password: "123123123",
     remember: true
   });
 

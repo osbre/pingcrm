@@ -1,5 +1,12 @@
-# Ping
+# Pingcrm Phoenix/React
 
+A sample app demonstrating how to integrate React with Phoenix using Inertia.js.
+
+## Phoenix Adapter
+
+https://github.com/devato/inertia_phoenix
+
+## Development
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

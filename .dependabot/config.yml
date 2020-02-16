@@ -1,0 +1,10 @@
+version: 1
+
+update_configs:
+  - package_manager: "elixir:hex"
+    directory: "/"
+    update_schedule: "live"
+
+  - package_manager: "javascript"
+    directory: "/assets"
+    update_schedule: "live"

@@ -5,9 +5,9 @@ import { usePage } from "@inertiajs/inertia-react";
 import Logo from "@/Shared/Logo";
 import LoadingButton from "@/Shared/LoadingButton";
 import TextInput from "@/Shared/TextInput";
+import FlashMessages from "@/Shared/FlashMessages";
 
 export default () => {
-  const { errors } = usePage();
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     email: "johndoe@example.com",
@@ -49,12 +49,12 @@ export default () => {
           <div className="px-10 py-12">
             <h1 className="text-center font-bold text-3xl">Welcome Back!</h1>
             <div className="mx-auto mt-6 w-24 border-b-2" />
+            <FlashMessages />
             <TextInput
               className="mt-10"
               label="Email"
               name="email"
               type="email"
-              errors={errors.email}
               value={values.email}
               onChange={handleChange}
             />
@@ -63,7 +63,6 @@ export default () => {
               label="Password"
               name="password"
               type="password"
-              errors={errors.password}
               value={values.password}
               onChange={handleChange}
             />

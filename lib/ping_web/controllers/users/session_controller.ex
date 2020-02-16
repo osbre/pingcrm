@@ -3,7 +3,7 @@ defmodule PingWeb.Users.SessionController do
   alias Ping.Users.User
 
   def new(conn, _params) do
-    render_inertia(conn, "Auth/Login", props: %{errors: %{}})
+    render_inertia(conn, "Auth/Login")
   end
 
   def create(conn, _params) do
@@ -13,11 +13,12 @@ defmodule PingWeb.Users.SessionController do
         |> assign(:current_user, user)
         |> put_session(:user_id, user.id)
         |> put_flash(:info, "Welcome Back!")
-        |> render_inertia("Auth/Login", props: %{errors: %{}})
+        |> render_inertia("Auth/Login")
       _ ->
         conn
-        |> put_flash(:info, "User data not found")
-        |> redirect(to: "/login") |> halt()
+        |> put_flash(:error, "User not found")
+        |> put_status(:see_other)
+        |> redirect(to: Routes.login_path(conn, :new))
     end
   end
 end

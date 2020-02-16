@@ -1,5 +1,5 @@
-import React from 'react';
-import MainMenuItem from '@/Shared/MainMenuItem';
+import React from "react";
+import MainMenuItem from "@/Shared/MainMenuItem";
 
 export default ({ className }) => {
   return (

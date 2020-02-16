@@ -4,7 +4,8 @@ import classNames from "classnames";
 import Icon from "@/Shared/Icon";
 
 export default ({ icon, link, text }) => {
-  const isActive = route().current(link + "*");
+  // const isActive = route().current(link + "*");
+  const isActive = false;
 
   const iconClasses = classNames("w-4 h-4 mr-2", {
     "text-white fill-current": isActive,
@@ -18,7 +19,7 @@ export default ({ icon, link, text }) => {
 
   return (
     <div className="mb-4">
-      <InertiaLink href={route(link)} className="flex items-center group py-3">
+      <InertiaLink href={`/${link}`} className="flex items-center group py-3">
         <Icon name={icon} className={iconClasses} />
         <div className={textClasses}>{text}</div>
       </InertiaLink>

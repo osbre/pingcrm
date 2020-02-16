@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Icon from '@/Shared/Icon';
+import React, { useState } from "react";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import Icon from "@/Shared/Icon";
 
 export default () => {
   const { auth } = usePage();
@@ -22,24 +22,24 @@ export default () => {
             name="cheveron-down"
           />
         </div>
-        <div className={menuOpened ? '' : 'hidden'}>
+        <div className={menuOpened ? "" : "hidden"}>
           <div className="whitespace-no-wrap absolute z-20 mt-8 left-auto top-0 right-0 py-2 shadow-xl bg-white rounded text-sm">
             <InertiaLink
-              href={route('users.edit', auth.user.id)}
+              href={`/users/${auth.user.id}`}
               className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
             >
               My Profile
             </InertiaLink>
             <InertiaLink
-              href={route('users')}
+              href="/users"
               className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
             >
               Manage Users
             </InertiaLink>
             <InertiaLink
-              href={route('logout')}
+              href="/logout"
               className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
-              method="post"
+              method="delete"
             >
               Logout
             </InertiaLink>

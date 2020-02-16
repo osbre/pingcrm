@@ -14,20 +14,19 @@ defmodule PingWeb.Users.SessionController do
         conn
         |> put_flash(:info, "Welcome back!")
         |> redirect(to: Routes.dashboard_path(conn, :index))
-
       {:error, conn} ->
-        # changeset = Pow.Plug.change_user(conn, conn.params["user"])
-
         conn
         |> put_flash(:error, "Invalid email or password")
         |> redirect(to: Routes.login_path(conn, :new))
     end
   end
 
+  # https://hexdocs.pm/plug/Plug.Conn.Status.html
   def delete(conn, _params) do
     conn
     |> Pow.Plug.delete()
-    |> redirect(to: Routes.page_path(conn, :index))
+    |> put_status(:see_other)
+    |> redirect(to: Routes.login_path(conn, :new))
   end
 end
 

@@ -35,7 +35,7 @@ defmodule PingWeb.Router do
     pipe_through [:browser, :protected]
 
     get "/", DashboardController, :index
-    delete "/logout", SessionController, :delete, as: :logout
+    delete "/logout", Users.SessionController, :delete, as: :logout
   end
 
   # Other scopes may use custom stacks.

@@ -1,43 +1,63 @@
 defmodule Ping.Accounts.UserSearch do
+  @moduledoc """
+  Search for users using filters.
+  https://elixirschool.com/blog/ecto-query-composition/
+  """
   alias Ping.Repo
   alias Ping.Accounts.User
-  import Ecto.Query, only: [from: 2]
   import Ecto.Query
+
+  def search(criteria) do
+    base_query()
+    |> build_query(criteria)
+    |> Repo.all()
+  end
+
+  defp base_query do
+    from u in User,
+      select: map(u, [:id, :email, :first_name, :last_name, :owner, account: [:name]]),
+      preload: [:account]
+  end
+
+  defp build_query(query, criteria) when map_size(criteria) == 0 do
+    where(query, [u], is_nil(u.trashed_at))
+  end
 
   defp build_query(query, criteria) do
     Enum.reduce(criteria, query, &compose_query/2)
   end
 
-  defp compose_query({"title", title}, query) do
-    where(query, [p], ilike(p.title, ^"%#{title}%"))
-  end
-
-  defp compose_query({"tags", tags}, query) do
+  defp compose_query(%{}, query) do
     query
-    |> join(:left, [p], t in assoc(p, :tags))
-    |> where([_p, t], t.name in ^tags)
   end
 
-  defp compose_query({key, value}, query) when key in ~w(draft id) do
-    where(query, [p], ^{String.to_atom(key), value})
+  defp compose_query({"search", search}, query) do
+    where(
+      query,
+      [u],
+      ilike(u.first_name, ^"%#{search}%") or
+        ilike(u.last_name, ^"%#{search}%") or
+        ilike(u.email, ^"%#{search}%")
+    )
+  end
+
+  defp compose_query({"role", "user"}, query) do
+    where(query, [u], u.owner == false)
+  end
+
+  defp compose_query({"role", "owner"}, query) do
+    where(query, [u], u.owner == true)
+  end
+
+  defp compose_query({"trashed", "with"}, query) do
+    where(query, [u], is_nil(u.trashed_at) or not is_nil(u.trashed_at))
+  end
+
+  defp compose_query({"trashed", "only"}, query) do
+    where(query, [u], not is_nil(u.trashed_at))
   end
 
   defp compose_query(_unsupported_param, query) do
     query
-  end
-
-  def search(params \\ %{})
-
-  def search(params) when map_size(params) == 0 do
-    query =
-      from u in User,
-        select: map(u, [:id, :email, :first_name, :last_name, :owner, account: [:name]]),
-        preload: [:account]
-
-    Repo.all(query)
-  end
-
-  defp base_query do
-    from(u in User)
   end
 end

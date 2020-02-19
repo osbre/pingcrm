@@ -1,12 +1,13 @@
 defmodule PingWeb.UserController do
   use PingWeb, :controller
   alias Ping.Accounts
+  alias Ping.Accounts.UserSearch
 
   def index(conn, params) do
     render_inertia(conn, "Users/Index",
       props: %{
         users: %{
-          data: Accounts.search_users(params),
+          data: UserSearch.search(params),
           links: [%{active: true, label: "1", url: "/"}]
         },
         filters: %{role: "", search: "", trashed: ""}

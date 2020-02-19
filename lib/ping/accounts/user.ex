@@ -6,7 +6,7 @@ defmodule Ping.Accounts.User do
 
   @derive {Jason.Encoder, only: [:id, :email, :first_name, :last_name, :owner, :photo]}
 
-  @general_fields [:first_name, :last_name, :owner, :photo]
+  @general_fields [:first_name, :last_name, :owner, :photo, :trashed_at]
 
   schema "users" do
     pow_user_fields()
@@ -14,6 +14,7 @@ defmodule Ping.Accounts.User do
     field :last_name, :string
     field :owner, :boolean
     field :photo, :string, default: "http://placekitten.com/150/150"
+    field :trashed_at, :utc_datetime
     belongs_to :account, Account
 
     timestamps()

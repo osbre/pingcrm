@@ -9,7 +9,8 @@ Ping.Accounts.create_user!(%{
   password_confirmation: "123123123",
   first_name: "John",
   last_name: "Doe",
-  owner: true
+  owner: true,
+  role: "admin"
 })
 
 Ping.Accounts.create_user!(%{
@@ -19,5 +20,16 @@ Ping.Accounts.create_user!(%{
   password_confirmation: "123123123",
   first_name: "Jane",
   last_name: "Doe",
-  owner: true
+  owner: false
+})
+
+Ping.Accounts.create_user!(%{
+  account: %{name: "Account 3"},
+  email: "trashed@example.com",
+  password: "123123123",
+  password_confirmation: "123123123",
+  first_name: "Tom",
+  last_name: "Trash",
+  trashed_at: DateTime.utc_now(),
+  owner: false
 })

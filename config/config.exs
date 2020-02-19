@@ -10,6 +10,8 @@ use Mix.Config
 config :ping,
   ecto_repos: [Ping.Repo]
 
+config :ping, Ping.Repo, migration_timestamps: [type: :utc_datetime]
+
 # Configures the endpoint
 config :ping, PingWeb.Endpoint,
   url: [host: "localhost"],
@@ -32,7 +34,6 @@ config :ping, :pow,
 config :inertia_phoenix,
   assets_version: 1,
   inertia_layout: "app.html"
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

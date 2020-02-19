@@ -12,15 +12,15 @@ import TrashedMessage from "@/Shared/TrashedMessage";
 import { toFormData } from "@/utils";
 
 export default () => {
-  const { user, errors } = usePage();
+  const { user, changeset } = usePage();
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     first_name: user.first_name || "",
     last_name: user.last_name || "",
     email: user.email || "",
     password: user.password || "",
-    owner: user.owner ? "1" : "0" || "0"
-    // photo: '',
+    owner: user.owner ? "1" : "0" || "0",
+    photo: ""
   });
 
   function handleChange(e) {
@@ -71,6 +71,7 @@ export default () => {
   return (
     <Layout>
       <div>
+        <div>Changeset: {changeset}</div>
         <Helmet title={`${values.first_name} ${values.last_name}`} />
         <div className="mb-8 flex justify-start max-w-lg">
           <h1 className="font-bold text-3xl">
@@ -99,7 +100,6 @@ export default () => {
                 className="pr-6 pb-8 w-full lg:w-1/2"
                 label="First Name"
                 name="first_name"
-                errors={errors.first_name}
                 value={values.first_name}
                 onChange={handleChange}
               />
@@ -107,7 +107,6 @@ export default () => {
                 className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Last Name"
                 name="last_name"
-                errors={errors.last_name}
                 value={values.last_name}
                 onChange={handleChange}
               />
@@ -116,7 +115,6 @@ export default () => {
                 label="Email"
                 name="email"
                 type="email"
-                errors={errors.email}
                 value={values.email}
                 onChange={handleChange}
               />
@@ -125,7 +123,6 @@ export default () => {
                 label="Password"
                 name="password"
                 type="password"
-                errors={errors.password}
                 value={values.password}
                 onChange={handleChange}
               />
@@ -133,7 +130,6 @@ export default () => {
                 className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Owner"
                 name="owner"
-                errors={errors.owner}
                 value={values.owner}
                 onChange={handleChange}
               >
@@ -145,7 +141,6 @@ export default () => {
                 label="Photo"
                 name="photo"
                 accept="image/*"
-                errors={errors.photo}
                 value={values.photo}
                 onChange={handleFileChange}
               />

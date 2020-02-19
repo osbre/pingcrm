@@ -8,7 +8,7 @@ defmodule Ping.Accounts do
   end
 
   def get_user!(id) do
-    Repo.get!(User, id)
+    Repo.get!(User, id) |> Repo.preload(:account)
   end
 
   def get_by_email(email) do

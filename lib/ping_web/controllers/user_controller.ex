@@ -21,27 +21,25 @@ defmodule PingWeb.UserController do
   end
 
   def edit(conn, %{"id" => user_id}) do
-    user = Accounts.get_user(user_id)
+    user = Accounts.get_user!(user_id)
 
     render_inertia(conn, "Users/Edit",
       props: %{
         user: %{
           id: user.id,
           email: user.email,
-          owner: true,
-          first_name: "Tom",
-          last_name: "Jones",
+          owner: user.owner,
+          first_name: user.first_name,
+          last_name: user.last_name,
           account: %{
-            name: "Account"
+            name: user.account.name
           }
-        },
-        errors: []
+        }
       }
     )
   end
 
   def update(conn, %{"id" => user_id} = user_params) do
-    IO.inspect(user_params)
     user = Accounts.get_user!(user_id)
 
     user
@@ -54,22 +52,21 @@ defmodule PingWeb.UserController do
         |> redirect(to: Routes.user_path(conn, :edit, user_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        # Traverse errors to build a map:
+        # https://medium.com/@cjbell_/nested-associations-changeset-errors-in-ecto-f0ce6a4fec70
+        errors =
+          Ecto.Changeset.traverse_errors(changeset, fn
+            {msg, opts} -> String.replace(msg, "%{count}", to_string(opts[:count]))
+            msg -> msg
+          end)
+
+        #         IO.puts("=> errors:")
+        #         IO.inspect(errors)
+
         conn
         |> put_flash(:error, "Error updating user")
-        |> assign(:errors, changeset.errors)
+        |> InertiaPhoenix.share(:changeset, changeset)
         |> redirect(to: Routes.user_path(conn, :edit, user_id))
     end
-
-    # |> Pow.Plug.authenticate_user(params)
-    # |> case do
-    #   {:ok, conn} ->
-    #     conn
-    #     |> put_flash(:info, "Welcome back!")
-    #     |> redirect(to: Routes.dashboard_path(conn, :index))
-    #   {:error, conn} ->
-    #     conn
-    #     |> put_flash(:error, "Invalid email or password")
-    #     |> redirect(to: Routes.login_path(conn, :new))
-    # end
   end
 end

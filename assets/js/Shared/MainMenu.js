@@ -1,7 +1,7 @@
 import React from "react";
 import MainMenuItem from "@/Shared/MainMenuItem";
 
-export default ({ className }) => {
+export default ({className}) => {
   return (
     <div className={className}>
       <MainMenuItem text="Dashboard" link="" icon="dashboard" />

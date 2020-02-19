@@ -1,14 +1,14 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import Icon from '@/Shared/Icon';
-import Pagination from '@/Shared/Pagination';
-import SearchFilter from '@/Shared/SearchFilter';
+import React from "react";
+import Helmet from "react-helmet";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import Icon from "@/Shared/Icon";
+import Pagination from "@/Shared/Pagination";
+import SearchFilter from "@/Shared/SearchFilter";
 
 export default () => {
-  const { contacts } = usePage();
-  const { data, links } = contacts;
+  const {contacts} = usePage();
+  const {data, links} = contacts;
   return (
     <Layout>
       <Helmet title="Contacts" />
@@ -16,7 +16,7 @@ export default () => {
         <h1 className="mb-8 font-bold text-3xl">Contacts</h1>
         <div className="mb-6 flex justify-between items-center">
           <SearchFilter />
-          <InertiaLink className="btn-indigo" href={route('contacts.create')}>
+          <InertiaLink className="btn-indigo" href={route("contacts.create")}>
             <span>Create</span>
             <span className="hidden md:inline"> Contact</span>
           </InertiaLink>
@@ -35,14 +35,14 @@ export default () => {
             </thead>
             <tbody>
               {data.map(
-                ({ id, name, city, phone, organization, deleted_at }) => (
+                ({id, name, city, phone, organization, deleted_at}) => (
                   <tr
                     key={id}
                     className="hover:bg-gray-100 focus-within:bg-gray-100"
                   >
                     <td className="border-t">
                       <InertiaLink
-                        href={route('contacts.edit', id)}
+                        href={route("contacts.edit", id)}
                         className="px-6 py-4 flex items-center focus:text-indigo-700"
                       >
                         {name}
@@ -58,15 +58,15 @@ export default () => {
                       <InertiaLink
                         tabIndex="1"
                         className="px-6 py-4 flex items-center focus:text-indigo"
-                        href={route('contacts.edit', id)}
+                        href={route("contacts.edit", id)}
                       >
-                        {organization ? organization.name : ''}
+                        {organization ? organization.name : ""}
                       </InertiaLink>
                     </td>
                     <td className="border-t">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('contacts.edit', id)}
+                        href={route("contacts.edit", id)}
                         className="px-6 py-4 flex items-center focus:text-indigo"
                       >
                         {city}
@@ -75,7 +75,7 @@ export default () => {
                     <td className="border-t">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('contacts.edit', id)}
+                        href={route("contacts.edit", id)}
                         className="px-6 py-4 flex items-center focus:text-indigo"
                       >
                         {phone}
@@ -84,7 +84,7 @@ export default () => {
                     <td className="border-t w-px">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('contacts.edit', id)}
+                        href={route("contacts.edit", id)}
                         className="px-4 flex items-center"
                       >
                         <Icon

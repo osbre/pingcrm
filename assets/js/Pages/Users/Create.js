@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
-import FileInput from '@/Shared/FileInput';
-import { toFormData } from '@/utils';
+import React, { useState } from "react";
+import Helmet from "react-helmet";
+import { Inertia } from "@inertiajs/inertia";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
+import FileInput from "@/Shared/FileInput";
+import { toFormData } from "@/utils";
 
 export default () => {
   const { errors } = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    owner: '0',
-    photo: ''
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    owner: "0",
+    photo: ""
   });
 
   function handleChange(e) {
@@ -47,7 +47,7 @@ export default () => {
     // for more info check utils.js
     const formData = toFormData(values);
 
-    Inertia.post(route('users.store'), formData).then(() => {
+    Inertia.post(route("users.store"), formData).then(() => {
       setSending(false);
     });
   }
@@ -59,7 +59,7 @@ export default () => {
         <div>
           <h1 className="mb-8 font-bold text-3xl">
             <InertiaLink
-              href={route('users')}
+              href={route("users")}
               className="text-indigo-600 hover:text-indigo-700"
             >
               Users

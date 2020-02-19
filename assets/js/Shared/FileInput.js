@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { filesize } from '@/utils';
+import React, {useState, useRef} from "react";
+import {filesize} from "@/utils";
 
-const Button = ({ text, onClick }) => (
+const Button = ({text, onClick}) => (
   <button
     type="button"
     className="focus:outline-none px-4 py-1 bg-gray-600 hover:bg-gray-700 rounded-sm text-xs font-medium text-white"
@@ -11,7 +11,7 @@ const Button = ({ text, onClick }) => (
   </button>
 );
 
-export default ({ className, name, label, accept, errors = [], onChange }) => {
+export default ({className, name, label, accept, errors = [], onChange}) => {
   const fileInput = useRef();
   const [file, setFile] = useState(null);
 
@@ -38,7 +38,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
           {label}:
         </label>
       )}
-      <div className={`form-input p-0 ${errors.length && 'error'}`}>
+      <div className={`form-input p-0 ${errors.length && "error"}`}>
         <input
           id={name}
           ref={fileInput}

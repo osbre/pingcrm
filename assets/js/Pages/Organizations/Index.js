@@ -1,14 +1,14 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import Icon from '@/Shared/Icon';
-import SearchFilter from '@/Shared/SearchFilter';
-import Pagination from '@/Shared/Pagination';
+import React from "react";
+import Helmet from "react-helmet";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import Icon from "@/Shared/Icon";
+import SearchFilter from "@/Shared/SearchFilter";
+import Pagination from "@/Shared/Pagination";
 
 const Organizations = () => {
-  const { organizations } = usePage();
-  const { links, data } = organizations;
+  const {organizations} = usePage();
+  const {links, data} = organizations;
   return (
     <div>
       <Helmet title="Organizations" />
@@ -18,7 +18,7 @@ const Organizations = () => {
           <SearchFilter />
           <InertiaLink
             className="btn-indigo"
-            href={route('organizations.create')}
+            href={route("organizations.create")}
           >
             <span>Create</span>
             <span className="hidden md:inline"> Organization</span>
@@ -36,7 +36,7 @@ const Organizations = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map(({ id, name, city, phone, deleted_at }) => {
+              {data.map(({id, name, city, phone, deleted_at}) => {
                 return (
                   <tr
                     key={id}
@@ -44,7 +44,7 @@ const Organizations = () => {
                   >
                     <td className="border-t">
                       <InertiaLink
-                        href={route('organizations.edit', id)}
+                        href={route("organizations.edit", id)}
                         className="px-6 py-4 flex items-center focus:text-indigo-700"
                       >
                         {name}
@@ -59,7 +59,7 @@ const Organizations = () => {
                     <td className="border-t">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('organizations.edit', id)}
+                        href={route("organizations.edit", id)}
                         className="px-6 py-4 flex items-center focus:text-indigo"
                       >
                         {city}
@@ -68,7 +68,7 @@ const Organizations = () => {
                     <td className="border-t">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('organizations.edit', id)}
+                        href={route("organizations.edit", id)}
                         className="px-6 py-4 flex items-center focus:text-indigo"
                       >
                         {phone}
@@ -77,7 +77,7 @@ const Organizations = () => {
                     <td className="border-t w-px">
                       <InertiaLink
                         tabIndex="-1"
-                        href={route('organizations.edit', id)}
+                        href={route("organizations.edit", id)}
                         className="px-4 flex items-center"
                       >
                         <Icon

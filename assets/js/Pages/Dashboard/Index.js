@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { InertiaLink } from "@inertiajs/inertia-react";
+import {InertiaLink} from "@inertiajs/inertia-react";
 import Layout from "@/Shared/Layout";
 
 const Dashboard = () => {

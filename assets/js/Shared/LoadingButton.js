@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-export default ({ loading, className, children, ...props }) => {
+export default ({loading, className, children, ...props}) => {
   return (
     <button
       disabled={loading}

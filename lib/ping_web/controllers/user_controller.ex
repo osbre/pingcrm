@@ -1,7 +1,8 @@
 defmodule PingWeb.UserController do
   use PingWeb, :controller
   alias Ping.Accounts
-  alias Ping.Accounts.UserSearch
+  alias Ping.Accounts.{User, UserSearch}
+  alias Ping.Repo
 
   def index(conn, params) do
     render_inertia(conn, "Users/Index",
@@ -39,6 +40,36 @@ defmodule PingWeb.UserController do
     )
   end
 
-  def update(conn, user_params) do
+  def update(conn, %{"id" => user_id} = user_params) do
+    IO.inspect(user_params)
+    user = Accounts.get_user!(user_id)
+
+    user
+    |> User.changeset(user_params)
+    |> Repo.update()
+    |> case do
+      {:ok, user} ->
+        conn
+        |> put_flash(:success, "User updated successfully")
+        |> redirect(to: Routes.user_path(conn, :edit, user_id))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_flash(:error, "Error updating user")
+        |> assign(:errors, changeset.errors)
+        |> redirect(to: Routes.user_path(conn, :edit, user_id))
+    end
+
+    # |> Pow.Plug.authenticate_user(params)
+    # |> case do
+    #   {:ok, conn} ->
+    #     conn
+    #     |> put_flash(:info, "Welcome back!")
+    #     |> redirect(to: Routes.dashboard_path(conn, :index))
+    #   {:error, conn} ->
+    #     conn
+    #     |> put_flash(:error, "Invalid email or password")
+    #     |> redirect(to: Routes.login_path(conn, :new))
+    # end
   end
 end

@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import DeleteButton from '@/Shared/DeleteButton';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
-import TrashedMessage from '@/Shared/TrashedMessage';
+import React, {useState} from "react";
+import Helmet from "react-helmet";
+import {Inertia} from "@inertiajs/inertia";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import DeleteButton from "@/Shared/DeleteButton";
+import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
+import TrashedMessage from "@/Shared/TrashedMessage";
 
 export default () => {
-  const { contact, organizations, errors } = usePage();
+  const {contact, organizations, errors} = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
-    first_name: contact.first_name || '',
-    last_name: contact.last_name || '',
-    organization_id: contact.organization_id || '',
-    email: contact.email || '',
-    phone: contact.phone || '',
-    address: contact.address || '',
-    city: contact.city || '',
-    region: contact.region || '',
-    country: contact.country || '',
-    postal_code: contact.postal_code || ''
+    first_name: contact.first_name || "",
+    last_name: contact.last_name || "",
+    organization_id: contact.organization_id || "",
+    email: contact.email || "",
+    phone: contact.phone || "",
+    address: contact.address || "",
+    city: contact.city || "",
+    region: contact.region || "",
+    country: contact.country || "",
+    postal_code: contact.postal_code || ""
   });
 
   function handleChange(e) {
@@ -38,20 +38,20 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.put(route('contacts.update', contact.id), values).then(() =>
+    Inertia.put(route("contacts.update", contact.id), values).then(() =>
       setSending(false)
     );
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this contact?')) {
-      Inertia.delete(route('contacts.destroy', contact.id));
+    if (confirm("Are you sure you want to delete this contact?")) {
+      Inertia.delete(route("contacts.destroy", contact.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this contact?')) {
-      Inertia.put(route('contacts.restore', contact.id));
+    if (confirm("Are you sure you want to restore this contact?")) {
+      Inertia.put(route("contacts.restore", contact.id));
     }
   }
 
@@ -61,7 +61,7 @@ export default () => {
         <Helmet title={`${values.first_name} ${values.last_name}`} />
         <h1 className="mb-8 font-bold text-3xl">
           <InertiaLink
-            href={route('contacts')}
+            href={route("contacts")}
             className="text-indigo-600 hover:text-indigo-700"
           >
             Contacts
@@ -102,7 +102,7 @@ export default () => {
                 onChange={handleChange}
               >
                 <option value=""></option>
-                {organizations.map(({ id, name }) => (
+                {organizations.map(({id, name}) => (
                   <option key={id} value={id}>
                     {name}
                   </option>

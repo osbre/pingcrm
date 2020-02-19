@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // Original Logo
 // export default props => (

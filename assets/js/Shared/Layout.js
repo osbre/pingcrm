@@ -5,7 +5,7 @@ import FlashMessages from "@/Shared/FlashMessages";
 import TopHeader from "@/Shared/TopHeader";
 import BottomHeader from "@/Shared/BottomHeader";
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
   return (
     <div>
       <Helmet titleTemplate="%s | Ping CRM" />

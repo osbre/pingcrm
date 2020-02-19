@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
-import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
+import React, {useState} from "react";
+import Helmet from "react-helmet";
+import {Inertia} from "@inertiajs/inertia";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
 
 export default () => {
-  const { organizations, errors } = usePage();
+  const {organizations, errors} = usePage();
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
-    first_name: '',
-    last_name: '',
-    organization_id: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
-    region: '',
-    country: '',
-    postal_code: ''
+    first_name: "",
+    last_name: "",
+    organization_id: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    region: "",
+    country: "",
+    postal_code: ""
   });
 
   function handleChange(e) {
@@ -35,7 +35,7 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('contacts.store'), values).then(() => {
+    Inertia.post(route("contacts.store"), values).then(() => {
       setSending(false);
     });
   }
@@ -46,7 +46,7 @@ export default () => {
         <Helmet title="Create Contact" />
         <h1 className="mb-8 font-bold text-3xl">
           <InertiaLink
-            href={route('contacts')}
+            href={route("contacts")}
             className="text-indigo-600 hover:text-indigo-700"
           >
             Contacts
@@ -81,7 +81,7 @@ export default () => {
                 onChange={handleChange}
               >
                 <option value=""></option>
-                {organizations.map(({ id, name }) => (
+                {organizations.map(({id, name}) => (
                   <option key={id} value={id}>
                     {name}
                   </option>

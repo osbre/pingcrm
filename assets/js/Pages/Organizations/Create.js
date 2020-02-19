@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
+import React, {useState} from "react";
+import Helmet from "react-helmet";
+import {Inertia} from "@inertiajs/inertia";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
 
 export default () => {
-  const { errors } = usePage();
+  const {errors} = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    city: '',
-    region: '',
-    country: '',
-    postal_code: ''
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    region: "",
+    country: "",
+    postal_code: ""
   });
 
   function handleChange(e) {
@@ -34,7 +34,7 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('organizations.store'), values).then(() => {
+    Inertia.post(route("organizations.store"), values).then(() => {
       setSending(false);
     });
   }
@@ -45,7 +45,7 @@ export default () => {
       <div>
         <h1 className="mb-8 font-bold text-3xl">
           <InertiaLink
-            href={route('organizations')}
+            href={route("organizations")}
             className="text-indigo-600 hover:text-indigo-700"
           >
             Organizations

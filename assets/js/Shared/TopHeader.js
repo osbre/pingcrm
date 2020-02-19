@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
-import Logo from '@/Shared/Logo';
-import MainMenu from '@/Shared/MainMenu';
+import React, {useState} from "react";
+import {InertiaLink} from "@inertiajs/inertia-react";
+import Logo from "@/Shared/Logo";
+import MainMenu from "@/Shared/MainMenu";
 
 export default () => {
   const [menuOpened, setMenuOpened] = useState(false);
@@ -19,7 +19,7 @@ export default () => {
         >
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
         </svg>
-        <div className={`${menuOpened ? '' : 'hidden'} absolute right-0 z-20`}>
+        <div className={`${menuOpened ? "" : "hidden"} absolute right-0 z-20`}>
           <MainMenu className="relative z-20 mt-2 px-8 py-4 pb-2 shadow-lg bg-indigo-800 rounded" />
           <div
             onClick={() => {

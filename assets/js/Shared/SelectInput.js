@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default ({
   label,
@@ -19,7 +19,7 @@ export default ({
         id={name}
         name={name}
         {...props}
-        className={`form-select ${errors.length ? 'error' : ''}`}
+        className={`form-select ${errors.length ? "error" : ""}`}
       >
         {children}
       </select>

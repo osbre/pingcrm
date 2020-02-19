@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { usePage } from "@inertiajs/inertia-react";
+import React, {useState, useEffect} from "react";
+import {usePage} from "@inertiajs/inertia-react";
 import classNames from "classnames";
 
 const IconSuccess = () => (
@@ -22,7 +22,7 @@ const IconDanger = () => (
   </svg>
 );
 
-const ButtonClose = ({ color, onClick }) => {
+const ButtonClose = ({color, onClick}) => {
   const className = classNames("block  w-2 h-2 fill-current", {
     "text-red-700 group-hover:text-red-800": color === "red",
     "text-green-700 group-hover:text-green-800": color === "green"
@@ -48,7 +48,7 @@ const ButtonClose = ({ color, onClick }) => {
 
 export default () => {
   const [visible, setVisible] = useState(true);
-  const { flash, errors } = usePage();
+  const {flash, errors} = usePage();
   // const numOfErrors = Object.keys(errors).length;
 
   useEffect(() => {

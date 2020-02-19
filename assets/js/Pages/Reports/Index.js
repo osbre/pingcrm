@@ -1,6 +1,6 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import Layout from '@/Shared/Layout';
+import React from "react";
+import Helmet from "react-helmet";
+import Layout from "@/Shared/Layout";
 
 export default () => {
   return (

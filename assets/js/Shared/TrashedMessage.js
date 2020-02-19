@@ -1,7 +1,7 @@
-import React from 'react';
-import Icon from '@/Shared/Icon';
+import React from "react";
+import Icon from "@/Shared/Icon";
 
-export default ({ onRestore, children }) => {
+export default ({onRestore, children}) => {
   return (
     <div className="max-w-3xl mb-6 p-4 bg-yellow-400 rounded border border-yellow-500 flex items-center justify-between">
       <div className="flex items-center">

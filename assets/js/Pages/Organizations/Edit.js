@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import DeleteButton from '@/Shared/DeleteButton';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
-import TrashedMessage from '@/Shared/TrashedMessage';
-import Icon from '@/Shared/Icon';
+import React, {useState} from "react";
+import Helmet from "react-helmet";
+import {Inertia} from "@inertiajs/inertia";
+import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import DeleteButton from "@/Shared/DeleteButton";
+import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
+import TrashedMessage from "@/Shared/TrashedMessage";
+import Icon from "@/Shared/Icon";
 
 export default () => {
-  const { errors, organization } = usePage();
+  const {errors, organization} = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
-    name: organization.name || '',
-    email: organization.email || '',
-    phone: organization.phone || '',
-    address: organization.address || '',
-    city: organization.city || '',
-    region: organization.region || '',
-    country: organization.country || '',
-    postal_code: organization.postal_code || ''
+    name: organization.name || "",
+    email: organization.email || "",
+    phone: organization.phone || "",
+    address: organization.address || "",
+    city: organization.city || "",
+    region: organization.region || "",
+    country: organization.country || "",
+    postal_code: organization.postal_code || ""
   });
 
   function handleChange(e) {
@@ -38,20 +38,20 @@ export default () => {
     e.preventDefault();
     setSending(true);
     Inertia.put(
-      route('organizations.update', organization.id),
+      route("organizations.update", organization.id),
       values
     ).then(() => setSending(false));
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this organization?')) {
-      Inertia.delete(route('organizations.destroy', organization.id));
+    if (confirm("Are you sure you want to delete this organization?")) {
+      Inertia.delete(route("organizations.destroy", organization.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this organization?')) {
-      Inertia.put(route('organizations.restore', organization.id));
+    if (confirm("Are you sure you want to restore this organization?")) {
+      Inertia.put(route("organizations.restore", organization.id));
     }
   }
 
@@ -61,7 +61,7 @@ export default () => {
       <div>
         <h1 className="mb-8 font-bold text-3xl">
           <InertiaLink
-            href={route('organizations')}
+            href={route("organizations")}
             className="text-indigo-600 hover:text-indigo-700"
           >
             Organizations
@@ -182,7 +182,7 @@ export default () => {
             </thead>
             <tbody>
               {organization.contacts.map(
-                ({ id, name, phone, city, deleted_at }) => {
+                ({id, name, phone, city, deleted_at}) => {
                   return (
                     <tr
                       key={id}
@@ -190,7 +190,7 @@ export default () => {
                     >
                       <td className="border-t">
                         <InertiaLink
-                          href={route('contacts.edit', id)}
+                          href={route("contacts.edit", id)}
                           className="px-6 py-4 flex items-center focus:text-indigo"
                         >
                           {name}
@@ -205,7 +205,7 @@ export default () => {
                       <td className="border-t">
                         <InertiaLink
                           tabIndex="-1"
-                          href={route('contacts.edit', id)}
+                          href={route("contacts.edit", id)}
                           className="px-6 py-4 flex items-center focus:text-indigo"
                         >
                           {city}
@@ -214,7 +214,7 @@ export default () => {
                       <td className="border-t">
                         <InertiaLink
                           tabIndex="-1"
-                          href={route('contacts.edit', id)}
+                          href={route("contacts.edit", id)}
                           className="px-6 py-4 flex items-center focus:text-indigo"
                         >
                           {phone}
@@ -223,7 +223,7 @@ export default () => {
                       <td className="border-t w-px">
                         <InertiaLink
                           tabIndex="-1"
-                          href={route('contacts.edit', id)}
+                          href={route("contacts.edit", id)}
                           className="px-4 flex items-center"
                         >
                           <Icon

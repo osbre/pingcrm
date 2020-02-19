@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-export default ({ name, className }) => {
-  if (name === 'apple') {
+export default ({name, className}) => {
+  if (name === "apple") {
     return (
       <svg
         className={className}
@@ -18,7 +18,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'book') {
+  if (name === "book") {
     return (
       <svg
         className={className}
@@ -30,7 +30,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'cheveron-down') {
+  if (name === "cheveron-down") {
     return (
       <svg
         className={className}
@@ -42,7 +42,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'cheveron-right') {
+  if (name === "cheveron-right") {
     return (
       <svg
         className={className}
@@ -54,7 +54,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'dashboard') {
+  if (name === "dashboard") {
     return (
       <svg
         className={className}
@@ -66,7 +66,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'location') {
+  if (name === "location") {
     return (
       <svg
         className={className}
@@ -78,7 +78,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'office') {
+  if (name === "office") {
     return (
       <svg
         className={className}
@@ -95,7 +95,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name == 'printer') {
+  if (name == "printer") {
     return (
       <svg
         className={className}
@@ -107,7 +107,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'shopping-cart') {
+  if (name === "shopping-cart") {
     return (
       <svg
         className={className}
@@ -119,7 +119,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'store-front') {
+  if (name === "store-front") {
     return (
       <svg
         className={className}
@@ -131,7 +131,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'trash') {
+  if (name === "trash") {
     return (
       <svg
         className={className}
@@ -143,7 +143,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name === 'users') {
+  if (name === "users") {
     return (
       <svg
         className={className}

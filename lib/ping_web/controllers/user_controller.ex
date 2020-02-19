@@ -1,42 +1,41 @@
 defmodule PingWeb.UserController do
   use PingWeb, :controller
+  alias Ping.Users
 
   def index(conn, _params) do
-    current_user = Pow.Plug.current_user(conn)
     render_inertia(conn, "Users/Index", props: %{
-      auth: %{
-        user: %{
-          id: current_user.id,
-          first_name: "Tom",
-          last_name: "Jones",
-          account: %{
-            name: "Account"
-          }
-        }
-      },
       users: %{
         data: [
-          %{id: 1, name: "Tom", photo: "/images/phoenix.png", email: "test@test.com", owner: "me", deleted_at: "2020-02-16"}
+          %{id: 1, name: "Tom Jones", email: "test@test.com"}
         ],
-        links: []
+        links: [%{active: true, label: "1", url: "/"}]
       },
       filters: %{role: "", search: "", trashed: ""}
     })
   end
 
   def show(conn, _params) do
-    current_user = Pow.Plug.current_user(conn)
-    render_inertia(conn, "Dashboard/Index", props: %{
-      auth: %{
-        user: %{
-          id: current_user.id,
-          first_name: "Tom",
-          last_name: "Jones",
-          account: %{
-            name: "Account"
-          }
+    # render_inertia(conn, "Dashboard/Index")
+  end
+
+  def edit(conn, %{"id" => user_id}) do
+    user = Users.get(user_id)
+    render_inertia(conn, "Users/Edit", props: %{
+      user: %{
+        id: user.id,
+        email: user.email,
+        owner: true,
+        first_name: "Tom",
+        last_name: "Jones",
+        account: %{
+          name: "Account"
         }
-      }
+      },
+      errors: []
     })
+  end
+
+  def update(conn, user_params) do
+
   end
 end

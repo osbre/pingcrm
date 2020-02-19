@@ -4,14 +4,7 @@ import React from "react";
 import { render } from "react-dom";
 import { InertiaApp } from "@inertiajs/inertia-react";
 import axios from "axios";
-
-axios.interceptors.request.use(function(config) {
-  const token = document
-    .querySelector("meta[name='csrf-token']")
-    .getAttribute("content");
-  config.headers["x-csrf-token"] = token;
-  return config;
-});
+axios.defaults.xsrfHeaderName = "x-csrf-token";
 
 const app = document.getElementById("app");
 

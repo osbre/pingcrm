@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import Layout from '@/Shared/Layout';
-import DeleteButton from '@/Shared/DeleteButton';
-import LoadingButton from '@/Shared/LoadingButton';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
-import FileInput from '@/Shared/FileInput';
-import TrashedMessage from '@/Shared/TrashedMessage';
-import { toFormData } from '@/utils';
+import React, { useState } from "react";
+import Helmet from "react-helmet";
+import { Inertia } from "@inertiajs/inertia";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import Layout from "@/Shared/Layout";
+import DeleteButton from "@/Shared/DeleteButton";
+import LoadingButton from "@/Shared/LoadingButton";
+import TextInput from "@/Shared/TextInput";
+import SelectInput from "@/Shared/SelectInput";
+import FileInput from "@/Shared/FileInput";
+import TrashedMessage from "@/Shared/TrashedMessage";
+import { toFormData } from "@/utils";
 
 export default () => {
   const { user, errors } = usePage();
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
-    first_name: user.first_name || '',
-    last_name: user.last_name || '',
-    email: user.email || '',
-    password: user.password || '',
-    owner: user.owner ? '1' : '0' || '0'
+    first_name: user.first_name || "",
+    last_name: user.last_name || "",
+    email: user.email || "",
+    password: user.password || "",
+    owner: user.owner ? "1" : "0" || "0"
     // photo: '',
   });
 
@@ -49,22 +49,22 @@ export default () => {
     // NOTE: When working with Laravel PUT/PATCH requests and FormData
     // you SHOULD send POST request and fake the PUT request like this.
     // For more info check utils.jf file
-    const formData = toFormData(values, 'PUT');
+    const formData = toFormData(values, "PUT");
 
-    Inertia.post(route('users.update', user.id), formData).then(() => {
+    Inertia.post(`/users/${user.id}`, formData).then(() => {
       setSending(false);
     });
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this user?')) {
-      Inertia.delete(route('users.destroy', user.id));
+    if (confirm("Are you sure you want to delete this user?")) {
+      Inertia.delete(`/users/${user.id}`);
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this user?')) {
-      Inertia.put(route('users.restore', user.id));
+    if (confirm("Are you sure you want to restore this user?")) {
+      Inertia.put(`/users/${user.id}/restore`);
     }
   }
 
@@ -75,7 +75,7 @@ export default () => {
         <div className="mb-8 flex justify-start max-w-lg">
           <h1 className="font-bold text-3xl">
             <InertiaLink
-              href={route('users')}
+              href="/users"
               className="text-indigo-600 hover:text-indigo-700"
             >
               Users

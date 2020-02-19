@@ -9,6 +9,7 @@ defmodule PingWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug InertiaPhoenix.Plug
+    plug PingWeb.Plugs.InertiaShare
   end
 
   pipeline :protected do

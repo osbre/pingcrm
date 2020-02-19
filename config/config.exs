@@ -26,7 +26,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :ping, :pow,
-  user: Ping.Users.User,
+  user: Ping.Accounts.User,
   repo: Ping.Repo
 
 config :inertia_phoenix,

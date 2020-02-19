@@ -1,8 +1,9 @@
-defmodule Ping.Users do
+defmodule Ping.Accounts do
   alias Ping.Repo
-  alias Ping.Users.User
+  alias Ping.Accounts.User
+  import Ecto.Query, only: [from: 2]
 
-  def get(id) do
+  def get_user(id) do
     Repo.get(User, id)
   end
 
@@ -14,9 +15,10 @@ defmodule Ping.Users do
     Repo.all(User)
   end
 
-  def create_user!(user_params) do
+  def create_user!(user_attrs) do
     %User{}
-      |> User.changeset(user_params)
+      |> User.changeset(user_attrs)
       |> Repo.insert()
   end
+
 end

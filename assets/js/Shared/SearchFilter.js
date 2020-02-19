@@ -31,7 +31,12 @@ export default () => {
       const query = Object.keys(pickBy(values)).length
         ? pickBy(values)
         : { remember: "forget" };
-      Inertia.replace(route(route().current(), query));
+      console.log(query);
+      const queryString = Object.keys(query)
+        .map(key => `${key}=${query[key]}`)
+        .join("&");
+
+      Inertia.replace(`/users?${queryString}`);
     }
   }, [values]);
 

@@ -33,65 +33,75 @@ export default () => {
               </tr>
             </thead>
             <tbody>
-              {data.map(({ id, name, photo, email, owner, deleted_at }) => {
-                return (
-                  <tr
-                    key={id}
-                    className="hover:bg-gray-100 focus-within:bg-gray-100"
-                  >
-                    <td className="border-t">
-                      <InertiaLink
-                        href={`/users/${id}/edit`}
-                        className="px-6 py-4 flex items-center focus:text-indigo-700"
-                      >
-                        {photo && (
-                          <img
-                            src={photo}
-                            className="block w-5 h-5 rounded-full mr-2 -my-2"
-                          />
-                        )}
-                        {name}
-                        {deleted_at && (
+              {data.map(
+                ({
+                  id,
+                  first_name,
+                  last_name,
+                  photo,
+                  email,
+                  owner,
+                  deleted_at
+                }) => {
+                  return (
+                    <tr
+                      key={id}
+                      className="hover:bg-gray-100 focus-within:bg-gray-100"
+                    >
+                      <td className="border-t">
+                        <InertiaLink
+                          href={`/users/${id}/edit`}
+                          className="px-6 py-4 flex items-center focus:text-indigo-700"
+                        >
+                          {photo && (
+                            <img
+                              src={photo}
+                              className="block w-5 h-5 rounded-full mr-2 -my-2"
+                            />
+                          )}
+                          {first_name} {last_name}
+                          {deleted_at && (
+                            <Icon
+                              name="trash"
+                              className="flex-shrink-0 w-3 h-3 text-gray-400 fill-current ml-2"
+                            />
+                          )}
+                        </InertiaLink>
+                      </td>
+                      <td className="border-t">
+                        <InertiaLink
+                          tabIndex="-1"
+                          href={`/users/${id}/edit`}
+                          className="px-6 py-4 flex items-center focus:text-indigo"
+                        >
+                          {email}
+                        </InertiaLink>
+                      </td>
+                      <td className="border-t">
+                        <InertiaLink
+                          tabIndex="-1"
+                          href={`/users/${id}/edit`}
+                          className="px-6 py-4 flex items-center focus:text-indigo"
+                        >
+                          {owner ? "Owner" : "User"}
+                        </InertiaLink>
+                      </td>
+                      <td className="border-t w-px">
+                        <InertiaLink
+                          tabIndex="-1"
+                          href={`/users/${id}/edit`}
+                          className="px-4 flex items-center"
+                        >
                           <Icon
-                            name="trash"
-                            className="flex-shrink-0 w-3 h-3 text-gray-400 fill-current ml-2"
+                            name="cheveron-right"
+                            className="block w-6 h-6 text-gray-400 fill-current"
                           />
-                        )}
-                      </InertiaLink>
-                    </td>
-                    <td className="border-t">
-                      <InertiaLink
-                        tabIndex="-1"
-                        href={`/users/${id}/edit`}
-                        className="px-6 py-4 flex items-center focus:text-indigo"
-                      >
-                        {email}
-                      </InertiaLink>
-                    </td>
-                    <td className="border-t">
-                      <InertiaLink
-                        tabIndex="-1"
-                        href={`/users/${id}/edit`}
-                        className="px-6 py-4 flex items-center focus:text-indigo"
-                      >
-                        {owner ? "Owner" : "User"}
-                      </InertiaLink>
-                    </td>
-                    <td className="border-t w-px">
-                      <InertiaLink
-                        tabIndex="-1"
-                        href={`/users/${id}/edit`}
-                        className="px-4 flex items-center"
-                      >
-                        <Icon
-                          name="cheveron-right"
-                          className="block w-6 h-6 text-gray-400 fill-current"
-                        />
-                      </InertiaLink>
-                    </td>
-                  </tr>
-                );
-              })}
+                        </InertiaLink>
+                      </td>
+                    </tr>
+                  );
+                }
+              )}
               {data.length === 0 && (
                 <tr>
                   <td className="border-t px-6 py-4" colSpan="4">

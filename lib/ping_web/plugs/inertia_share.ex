@@ -1,6 +1,6 @@
 defmodule PingWeb.Plugs.InertiaShare do
   def init(default), do: default
-  alias Ping.Users.User
+  alias Ping.Accounts.User
 
   def call(conn, _) do
     InertiaPhoenix.share(conn, :auth, build_auth_map(conn))

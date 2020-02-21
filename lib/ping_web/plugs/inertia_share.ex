@@ -1,6 +1,7 @@
 defmodule PingWeb.Plugs.InertiaShare do
   def init(default), do: default
   alias Ping.Accounts.User
+  alias Ping.Repo
   import Plug.Conn
   import Logger
 
@@ -13,14 +14,14 @@ defmodule PingWeb.Plugs.InertiaShare do
   end
 
   defp build_auth_map(conn) do
-    case Pow.Plug.current_user(conn) do
+    case Repo.preload(Pow.Plug.current_user(conn), :account) do
       %User{} = current_user ->
         %{
           user: %{
-            account: %{name: "Account"},
-            first_name: "Tom",
             id: current_user.id,
-            last_name: "Jones"
+            account: %{name: current_user.account.name},
+            first_name: current_user.first_name,
+            last_name: current_user.last_name
           }
         }
 

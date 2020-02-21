@@ -8,8 +8,8 @@ defmodule PingWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug InertiaPhoenix.Plug
     plug PingWeb.Plugs.InertiaShare
+    plug InertiaPhoenix.Plug
   end
 
   pipeline :protected do

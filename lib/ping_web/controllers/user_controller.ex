@@ -3,6 +3,7 @@ defmodule PingWeb.UserController do
   alias Ping.Accounts
   alias Ping.Accounts.{User, UserSearch}
   alias Ping.Repo
+  import PingWeb.Utils
 
   def index(conn, params) do
     render_inertia(conn, "Users/Index",
@@ -52,20 +53,9 @@ defmodule PingWeb.UserController do
         |> redirect(to: Routes.user_path(conn, :edit, user_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        # Traverse errors to build a map:
-        # https://medium.com/@cjbell_/nested-associations-changeset-errors-in-ecto-f0ce6a4fec70
-        errors =
-          Ecto.Changeset.traverse_errors(changeset, fn
-            {msg, opts} -> String.replace(msg, "%{count}", to_string(opts[:count]))
-            msg -> msg
-          end)
-
-        #         IO.puts("=> errors:")
-        #         IO.inspect(errors)
-
         conn
         |> put_flash(:error, "Error updating user")
-        |> InertiaPhoenix.share(:changeset, changeset)
+        |> put_session(:errors, errors_from_changeset(changeset))
         |> redirect(to: Routes.user_path(conn, :edit, user_id))
     end
   end

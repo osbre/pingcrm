@@ -12,7 +12,8 @@ import TrashedMessage from "@/Shared/TrashedMessage";
 import { toFormData } from "@/utils";
 
 export default () => {
-  const { user, changeset } = usePage();
+  const { user, errors } = usePage();
+  console.log("Errors:", errors);
   const [sending, setSending] = useState(false);
   const [values, setValues] = useState({
     first_name: user.first_name || "",
@@ -71,7 +72,6 @@ export default () => {
   return (
     <Layout>
       <div>
-        <div>Changeset: {changeset}</div>
         <Helmet title={`${values.first_name} ${values.last_name}`} />
         <div className="mb-8 flex justify-start max-w-lg">
           <h1 className="font-bold text-3xl">
@@ -115,6 +115,7 @@ export default () => {
                 label="Email"
                 name="email"
                 type="email"
+                errors={errors && errors.email}
                 value={values.email}
                 onChange={handleChange}
               />

@@ -28,4 +28,8 @@ defmodule Ping.Accounts do
     |> User.changeset(user_attrs)
     |> Repo.insert()
   end
+
+  def delete_user!(%User{} = user) do
+    Repo.delete(user)
+  end
 end

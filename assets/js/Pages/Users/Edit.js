@@ -150,8 +150,10 @@ export default () => {
               />
             </div>
             <div className="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
-              {!user.deleted_at && (
+              {!user.trashed_at ? (
                 <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
+              ) : (
+                <span>(Trashed)</span>
               )}
               <LoadingButton
                 loading={sending}

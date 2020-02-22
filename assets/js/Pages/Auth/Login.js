@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Helmet from "react-helmet";
-import {Inertia} from "@inertiajs/inertia";
-import {usePage} from "@inertiajs/inertia-react";
+import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-react";
 import Logo from "@/Shared/Logo";
 import LoadingButton from "@/Shared/LoadingButton";
 import TextInput from "@/Shared/TextInput";
@@ -12,7 +12,7 @@ export default () => {
   const [values, setValues] = useState({
     email: "johndoe@example.com",
     password: "123123123",
-    remember: true
+    remember_me: true
   });
 
   function handleChange(e) {
@@ -68,14 +68,14 @@ export default () => {
             />
             <label
               className="mt-6 select-none flex items-center"
-              htmlFor="remember"
+              htmlFor="remember_me"
             >
               <input
-                name="remember"
-                id="remember"
+                name="remember_me"
+                id="remember_me"
                 className="mr-1"
                 type="checkbox"
-                checked={values.remember}
+                checked={values.remember_me}
                 onChange={handleChange}
               />
               <span className="text-sm">Remember Me</span>

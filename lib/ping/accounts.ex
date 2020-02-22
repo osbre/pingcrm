@@ -1,6 +1,6 @@
 defmodule Ping.Accounts do
   alias Ping.Repo
-  alias Ping.Accounts.User
+  alias Ping.Accounts.{Account, User}
   import Ecto.Query, only: [from: 2]
 
   def get_user(id) do
@@ -9,6 +9,10 @@ defmodule Ping.Accounts do
 
   def get_user!(id) do
     Repo.get!(User, id) |> Repo.preload(:account)
+  end
+
+  def get_account!(id) do
+    Repo.get!(Account, id)
   end
 
   def get_by_email(email) do

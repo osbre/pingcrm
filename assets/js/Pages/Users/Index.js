@@ -16,7 +16,7 @@ export default () => {
         <h1 className="mb-8 font-bold text-3xl">Users</h1>
         <div className="mb-6 flex justify-between items-center">
           <SearchFilter />
-          <InertiaLink className="btn-indigo" href="/users">
+          <InertiaLink className="btn-indigo" href="/users/new">
             <span>Create</span>
             <span className="hidden md:inline"> User</span>
           </InertiaLink>
@@ -55,7 +55,7 @@ export default () => {
                         >
                           {photo && (
                             <img
-                              src={photo}
+                              src={`/uploads/${photo}`}
                               className="block w-5 h-5 rounded-full mr-2 -my-2"
                             />
                           )}

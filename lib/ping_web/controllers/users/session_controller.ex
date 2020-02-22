@@ -13,6 +13,7 @@ defmodule PingWeb.Users.SessionController do
         conn
         |> put_flash(:info, "Welcome back!")
         |> redirect(to: Routes.dashboard_path(conn, :index))
+
       {:error, conn} ->
         conn
         |> put_flash(:error, "Invalid email or password")
@@ -28,4 +29,3 @@ defmodule PingWeb.Users.SessionController do
     |> redirect(to: Routes.login_path(conn, :new))
   end
 end
-

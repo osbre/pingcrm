@@ -100,6 +100,7 @@ export default () => {
                 className="pr-6 pb-8 w-full lg:w-1/2"
                 label="First Name"
                 name="first_name"
+                errors={errors.first_name}
                 value={values.first_name}
                 onChange={handleChange}
               />
@@ -107,6 +108,7 @@ export default () => {
                 className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Last Name"
                 name="last_name"
+                errors={errors.last_name}
                 value={values.last_name}
                 onChange={handleChange}
               />
@@ -123,6 +125,7 @@ export default () => {
                 className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Password"
                 name="password"
+                errors={errors.password}
                 type="password"
                 value={values.password}
                 onChange={handleChange}

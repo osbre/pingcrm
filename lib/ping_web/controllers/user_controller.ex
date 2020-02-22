@@ -6,10 +6,12 @@ defmodule PingWeb.UserController do
   import PingWeb.Utils
 
   def index(conn, params) do
+    %{id: admin_id} = Pow.Plug.current_user(conn)
+
     render_inertia(conn, "Users/Index",
       props: %{
         users: %{
-          data: UserSearch.search(params),
+          data: UserSearch.search(params, admin_id),
           links: [%{active: true, label: "1", url: "/"}]
         },
         filters: %{role: "", search: "", trashed: ""}
@@ -17,8 +19,31 @@ defmodule PingWeb.UserController do
     )
   end
 
-  def show(conn, _params) do
-    # render_inertia(conn, "Dashboard/Index")
+  def new(conn, _params) do
+    render_inertia(conn, "Users/Create",
+      props: %{
+        changeset: User.changeset(%User{}, %{}).data
+      }
+    )
+  end
+
+  def create(conn, user_params) do
+    %User{}
+    |> User.admin_changeset(user_params)
+    |> Ecto.Changeset.put_assoc(:account, Accounts.get_account!(1))
+    |> Repo.insert()
+    |> case do
+      {:ok, user} ->
+        conn
+        |> put_flash(:success, "User created successfully")
+        |> redirect(to: Routes.user_path(conn, :index))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_flash(:error, "Error creating user")
+        |> put_session(:errors, errors_from_changeset(changeset))
+        |> redirect(to: Routes.user_path(conn, :new))
+    end
   end
 
   def edit(conn, %{"id" => user_id}) do
@@ -43,10 +68,8 @@ defmodule PingWeb.UserController do
   def update(conn, %{"id" => user_id} = user_params) do
     user = Accounts.get_user!(user_id)
 
-    user_params = Map.new(Enum.filter(user_params, fn {k, v} -> v != "" end))
-
     user
-    |> User.changeset(user_params)
+    |> User.admin_changeset(user_params)
     |> Repo.update()
     |> case do
       {:ok, user} ->

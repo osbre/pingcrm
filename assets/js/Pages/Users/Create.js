@@ -47,7 +47,7 @@ export default () => {
     // for more info check utils.js
     const formData = toFormData(values);
 
-    Inertia.post(route("users.store"), formData).then(() => {
+    Inertia.post("/users", formData).then(() => {
       setSending(false);
     });
   }
@@ -59,7 +59,7 @@ export default () => {
         <div>
           <h1 className="mb-8 font-bold text-3xl">
             <InertiaLink
-              href={route("users")}
+              href="/users"
               className="text-indigo-600 hover:text-indigo-700"
             >
               Users

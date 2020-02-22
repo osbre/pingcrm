@@ -44,7 +44,8 @@ defmodule Ping.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:inertia_phoenix, "~> 0.2.5"},
-      {:pow, "~> 1.0.18"}
+      {:pow, "~> 1.0.18"},
+      {:upload, "~> 0.1.0"}
     ]
   end
 

@@ -7,15 +7,16 @@ defmodule Ping.Accounts.UserSearch do
   alias Ping.Accounts.User
   import Ecto.Query
 
-  def search(criteria) do
-    base_query()
+  def search(criteria, admin_id) do
+    base_query(admin_id)
     |> build_query(criteria)
     |> Repo.all()
   end
 
-  defp base_query do
+  defp base_query(admin_id) do
     from u in User,
-      select: map(u, [:id, :email, :first_name, :last_name, :owner, account: [:name]]),
+      where: u.id != ^admin_id,
+      select: map(u, [:id, :email, :photo, :first_name, :last_name, :owner, account: [:name]]),
       preload: [:account]
   end
 

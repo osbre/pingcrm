@@ -88,7 +88,7 @@ export default () => {
             <img className="block w-8 h-8 rounded-full ml-4" src={user.photo} />
           )}
         </div>
-        {user.deleted_at && (
+        {user.trashed_at && (
           <TrashedMessage onRestore={restore}>
             This contact has been deleted.
           </TrashedMessage>
@@ -150,10 +150,8 @@ export default () => {
               />
             </div>
             <div className="px-8 py-4 bg-gray-100 border-t border-gray-200 flex items-center">
-              {!user.trashed_at ? (
+              {!user.trashed_at && (
                 <DeleteButton onDelete={destroy}>Delete User</DeleteButton>
-              ) : (
-                <span>(Trashed)</span>
               )}
               <LoadingButton
                 loading={sending}

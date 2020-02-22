@@ -104,4 +104,24 @@ defmodule PingWeb.UserController do
         |> redirect(to: Routes.user_path(conn, :index))
     end
   end
+
+  def restore(conn, %{"user_id" => user_id}) do
+    user = Accounts.get_user!(user_id)
+
+    user
+    |> User.admin_changeset(%{"trashed_at" => nil})
+    |> Repo.update()
+    |> case do
+      {:ok, user} ->
+        conn
+        |> put_flash(:success, "User successfully restored")
+        |> redirect(to: Routes.user_path(conn, :index))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        conn
+        |> put_flash(:error, "Error restoring user")
+        |> put_session(:errors, errors_from_changeset(changeset))
+        |> redirect(to: Routes.user_path(conn, :index))
+    end
+  end
 end

@@ -36,7 +36,11 @@ defmodule PingWeb.Router do
     pipe_through [:browser, :protected]
 
     get "/", DashboardController, :index
-    resources "/users", UserController
+
+    resources "/users", UserController do
+      put "/restore", UserController, :restore, as: :restore
+    end
+
     delete "/logout", Users.SessionController, :delete, as: :logout
   end
 

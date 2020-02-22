@@ -1,8 +1,8 @@
 import React from "react";
-import {InertiaLink} from "@inertiajs/inertia-react";
+import { InertiaLink } from "@inertiajs/inertia-react";
 import classNames from "classnames";
 
-const PageLink = ({active, label, url}) => {
+const PageLink = ({ active, label, url }) => {
   const className = classNames(
     [
       "mr-1 mb-1",
@@ -27,7 +27,7 @@ const PageLink = ({active, label, url}) => {
 // Previous, if on first page
 // Next, if on last page
 // and dots, if exists (...)
-const PageInactive = ({label}) => {
+const PageInactive = ({ label }) => {
   const className = classNames(
     "mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray",
     {
@@ -37,12 +37,12 @@ const PageInactive = ({label}) => {
   return <div className={className}>{label}</div>;
 };
 
-export default ({links = []}) => {
+export default ({ links = [] }) => {
   // dont render, if there's only 1 page (previous, 1, next)
-  if (links.length === 3) return null;
+  // if (links.length === 3) return null;
   return (
     <div className="mt-6 -mb-1 flex flex-wrap">
-      {links.map(({active, label, url}) => {
+      {links.map(({ active, label, url }) => {
         return url === null ? (
           <PageInactive key={label} label={label} />
         ) : (

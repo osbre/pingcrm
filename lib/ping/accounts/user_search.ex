@@ -16,7 +16,8 @@ defmodule Ping.Accounts.UserSearch do
   defp base_query(admin_id) do
     from u in User,
       where: u.id != ^admin_id,
-      select: map(u, [:id, :email, :photo, :first_name, :last_name, :owner, account: [:name]]),
+      # select: map(u, [:id, :email, :photo, :first_name, :last_name, :owner, account: [:name]]),
+      select: [:id, :email, :photo, :first_name, :last_name, :owner, account: [:name]],
       preload: [:account]
   end
 

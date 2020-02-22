@@ -13,6 +13,8 @@ defmodule Ping.Accounts.User do
     :current_password
   ]
   @derived [
+    :id,
+    :email,
     :first_name,
     :last_name,
     :owner,

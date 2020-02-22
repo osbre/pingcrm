@@ -8,11 +8,16 @@ defmodule PingWeb.UserController do
   def index(conn, params) do
     %{id: admin_id} = Pow.Plug.current_user(conn)
 
+    page =
+      UserSearch.search(params, admin_id)
+      |> Repo.paginate(params)
+
     render_inertia(conn, "Users/Index",
       props: %{
         users: %{
-          data: UserSearch.search(params, admin_id),
-          links: [%{active: true, label: "1", url: "/"}]
+          data: page.entries,
+          links: pagination_links(page, "/users"),
+          total: page.total_entries
         },
         filters: %{role: "", search: "", trashed: ""}
       }

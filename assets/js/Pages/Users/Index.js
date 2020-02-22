@@ -112,7 +112,7 @@ export default () => {
             </tbody>
           </table>
         </div>
-        <Pagination links={links} />
+        <Pagination links={links} /> Total: {users.total}
       </div>
     </Layout>
   );

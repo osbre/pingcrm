@@ -43,6 +43,8 @@ defmodule PingWeb.UserController do
   def update(conn, %{"id" => user_id} = user_params) do
     user = Accounts.get_user!(user_id)
 
+    user_params = Map.new(Enum.filter(user_params, fn {k, v} -> v != "" end))
+
     user
     |> User.changeset(user_params)
     |> Repo.update()

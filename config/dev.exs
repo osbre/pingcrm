@@ -69,8 +69,7 @@ config :ping, PingWeb.Endpoint,
 config :logger, :console, format: "[$level] $message\n"
 
 config :logger,
-  level: :info,
-  truncate: 4096
+  level: :debug
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.

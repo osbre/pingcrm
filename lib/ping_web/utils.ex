@@ -9,10 +9,6 @@ defmodule PingWeb.Utils do
   end
 
   def pagination_links(%{total_pages: total_pages} = page, path) when total_pages > 1 do
-    # page_number: page.page_number,
-    # page_size: page.page_size,
-    # total_pages: page.total_pages,
-    # total_entries: page.total_entries,
     for n <- 1..total_pages do
       %{active: page.page_number == n, label: n, url: page_url(page, n, path)}
     end

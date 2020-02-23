@@ -1,12 +1,12 @@
-import React, {useState, useEffect, useRef} from "react";
-import {Inertia} from "@inertiajs/inertia";
-import {usePage} from "@inertiajs/inertia-react";
-import {usePrevious} from "react-use";
+import React, { useState, useEffect, useRef } from "react";
+import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-react";
+import { usePrevious } from "react-use";
 import SelectInput from "@/Shared/SelectInput";
 import pickBy from "lodash/pickBy";
 
 export default () => {
-  const {filters} = usePage();
+  const { filters } = usePage();
   const [opened, setOpened] = useState(false);
 
   const [values, setValues] = useState({
@@ -30,8 +30,7 @@ export default () => {
     if (prevValues) {
       const query = Object.keys(pickBy(values)).length
         ? pickBy(values)
-        : {remember: "forget"};
-      console.log(query);
+        : { remember: "forget" };
       const queryString = Object.keys(query)
         .map(key => `${key}=${query[key]}`)
         .join("&");
@@ -56,7 +55,7 @@ export default () => {
     <div className="flex items-center w-full max-w-md mr-4">
       <div className="relative flex w-full bg-white shadow rounded">
         <div
-          style={{top: "100%"}}
+          style={{ top: "100%" }}
           className={`absolute ${opened ? "" : "hidden"}`}
         >
           <div

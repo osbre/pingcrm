@@ -4,13 +4,18 @@ defmodule Ping.Accounts.UserSearchTest do
   alias Ping.Accounts.{UserSearch}
 
   defp users_for_search(_context) do
-    :ok
   end
 
-  describe "UserSearch no params" do
+  describe "when no users" do
+    test "search/2 finds no users" do
+      assert UserSearch.search(%{}, 0) == []
+    end
+  end
+
+  describe "when multiple users" do
     setup [:users_for_search]
 
-    test "search/2 with valid data finds users" do
+    test "search/2 should not display trashed" do
       assert UserSearch.search(%{}, 0) == []
     end
   end

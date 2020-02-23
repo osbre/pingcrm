@@ -1,5 +1,5 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(Ping.Repo, :manual)
+Faker.start()
 
 Application.put_env(:wallaby, :base_url, PingWeb.Endpoint.url())
 

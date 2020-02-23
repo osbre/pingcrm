@@ -37,7 +37,7 @@ jobs:
           chromedriver --url-base=/wd/hub &
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
       - run: npm install --prefix assets
-      - run: npm run deploy --prefix assets 2> /dev/null
-      - run: mix deps.get
+      - run: npm run deploy --prefix assets &>/dev/null &
+      # - run: mix deps.get
       # - run: mix check
-      - run: mix test
+      # - run: mix test

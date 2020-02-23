@@ -48,7 +48,9 @@ defmodule Ping.MixProject do
       {:upload, "~> 0.1.0"},
       {:scrivener_ecto, "~> 2.0"},
       {:scrivener_list, "~> 2.0"},
+      # testing
       {:wallaby, "~> 0.23.0", runtime: false, only: :test},
+      {:ex_machina, "~> 2.3", only: :test},
       # mix check
       {:ex_check, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},

@@ -38,7 +38,7 @@ defmodule PingWeb.UserController do
     |> Ecto.Changeset.put_assoc(:account, Accounts.get_account!(1))
     |> Repo.insert()
     |> case do
-      {:ok, user} ->
+      {:ok, _} ->
         conn
         |> put_flash(:success, "User successfully created")
         |> redirect(to: Routes.user_path(conn, :index))
@@ -78,7 +78,7 @@ defmodule PingWeb.UserController do
     |> User.admin_changeset(user_params)
     |> Repo.update()
     |> case do
-      {:ok, user} ->
+      {:ok, _} ->
         conn
         |> put_flash(:success, "User successfully updated")
         |> redirect(to: Routes.user_path(conn, :edit, user_id))
@@ -117,7 +117,7 @@ defmodule PingWeb.UserController do
     |> User.admin_changeset(%{"trashed_at" => nil})
     |> Repo.update()
     |> case do
-      {:ok, user} ->
+      {:ok, _} ->
         conn
         |> put_flash(:success, "User successfully restored")
         |> redirect(to: Routes.user_path(conn, :index))

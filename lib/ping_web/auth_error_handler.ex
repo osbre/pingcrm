@@ -1,4 +1,5 @@
 defmodule PingWeb.AuthErrorHandler do
+  @moduledoc false
   use PingWeb, :controller
   alias Plug.Conn
 
@@ -9,7 +10,6 @@ defmodule PingWeb.AuthErrorHandler do
     |> redirect(to: Routes.login_path(conn, :new))
   end
 
-  @spec call(Conn.t(), atom()) :: Conn.t()
   def call(conn, :already_authenticated) do
     conn
     |> put_flash(:error, "You're already authenticated")

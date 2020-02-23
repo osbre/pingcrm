@@ -1,7 +1,7 @@
 defmodule Ping.Accounts do
+  @moduledoc false
   alias Ping.Repo
   alias Ping.Accounts.{Account, User}
-  import Ecto.Query, only: [from: 2]
 
   def get_user(id) do
     Repo.get(User, id)

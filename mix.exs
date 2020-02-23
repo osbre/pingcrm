@@ -48,7 +48,11 @@ defmodule Ping.MixProject do
       {:upload, "~> 0.1.0"},
       {:scrivener_ecto, "~> 2.0"},
       {:scrivener_list, "~> 2.0"},
-      {:wallaby, "~> 0.23.0", runtime: false, only: :test}
+      {:ex_check, ">= 0.0.0", only: :dev, runtime: false},
+      {:credo, ">= 0.0.0", only: :dev, runtime: false},
+      {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:sobelow, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
@@ -63,7 +67,10 @@ defmodule Ping.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["assets.compile --quiet", "ecto.create --quiet", "ecto.migrate", "test"],
-      "assets.compile": &compile_assets/1
+      "assets.compile": &compile_assets/1,
+      "cypress.open": ["cmd ./bin/cypress.open"],
+      "cypress.ci": ["cmd ./bin/cypress.ci"],
+      "cypress.run": ["cmd ./bin/cypress.run"]
     ]
   end
 

@@ -1,4 +1,5 @@
 defmodule Ping.Accounts.Account do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
   alias Ping.Accounts.User

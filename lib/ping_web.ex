@@ -1,4 +1,5 @@
 defmodule PingWeb do
+  @moduledoc false
   def controller do
     quote do
       use Phoenix.Controller, namespace: PingWeb

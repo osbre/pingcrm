@@ -45,4 +45,8 @@ defmodule PingWeb.Endpoint do
   plug Plug.Session, @session_options
   plug Pow.Plug.Session, otp_app: :ping
   plug PingWeb.Router
+
+  if Application.get_env(:ping, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
 end

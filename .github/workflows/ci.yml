@@ -32,4 +32,4 @@ jobs:
           elixir-version: ${{matrix.elixir}}
       - run: mix deps.get
       - run: mix check
-      - run: mix test
+      # - run: mix test

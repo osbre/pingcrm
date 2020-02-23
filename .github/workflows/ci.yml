@@ -46,5 +46,5 @@ jobs:
           npm install --prefix assets
           npm build --prefix assets
       - run: mix deps.get
-      - run: mix check
+      # - run: mix check
       - run: mix test

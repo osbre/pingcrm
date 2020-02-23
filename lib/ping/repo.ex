@@ -3,5 +3,5 @@ defmodule Ping.Repo do
     otp_app: :ping,
     adapter: Ecto.Adapters.Postgres
 
-  use Scrivener, page_size: 2
+  use Scrivener, page_size: 15
 end

@@ -10,7 +10,8 @@ defmodule Ping.UserFactory do
       email: Faker.Internet.email(),
       password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("supersecret"),
       owner: false,
-      account: build(:account)
+      account: build(:account),
+      trashed_at: nil
     }
   end
 

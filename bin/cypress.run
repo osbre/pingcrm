@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 MIX_ENV=cypress mix ecto.reset
+MIX_ENV=cypress mix run priv/repo/seeds.exs
 
 MIX_ENV=cypress mix phx.server &
 pid=$! # Store server pid

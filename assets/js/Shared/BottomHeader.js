@@ -1,15 +1,16 @@
-import React, {useState} from "react";
-import {InertiaLink, usePage} from "@inertiajs/inertia-react";
+import React, { useState } from "react";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 import Icon from "@/Shared/Icon";
 
 export default () => {
-  const {auth} = usePage();
+  const { auth } = usePage();
   const [menuOpened, setMenuOpened] = useState(false);
   return (
     <div className="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm d:text-md flex justify-between items-center">
       <div className="mt-1 mr-4">{auth.user.account.name}</div>
       <div className="relative">
         <div
+          id="user-menu"
           className="flex items-center cursor-pointer select-none group"
           onClick={() => setMenuOpened(true)}
         >
@@ -31,6 +32,7 @@ export default () => {
               My Profile
             </InertiaLink>
             <InertiaLink
+              id="manage-users"
               href="/users"
               className="block px-6 py-2 hover:bg-indigo-600 hover:text-white"
             >

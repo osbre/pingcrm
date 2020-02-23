@@ -14,7 +14,7 @@ Ping.Accounts.create_user!(%{
 })
 
 Ping.Accounts.create_user!(%{
-  account: %{name: "Account 2"},
+  account: %{name: "Account 1"},
   email: "janedoe@example.com",
   password: "123123123",
   password_confirmation: "123123123",
@@ -24,7 +24,7 @@ Ping.Accounts.create_user!(%{
 })
 
 Ping.Accounts.create_user!(%{
-  account: %{name: "Account 3"},
+  account: %{name: "Account 1"},
   email: "trashed@example.com",
   password: "123123123",
   password_confirmation: "123123123",

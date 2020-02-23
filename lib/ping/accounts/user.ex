@@ -70,5 +70,9 @@ defmodule Ping.Accounts.User do
        when is_binary(password_confirmation) and password_confirmation != "",
        do: true
 
+  defp has_password_confirmation?(%{password_confirmation: password_confirmation})
+       when is_binary(password_confirmation) and password_confirmation != "",
+       do: true
+
   defp has_password_confirmation?(_attrs), do: false
 end

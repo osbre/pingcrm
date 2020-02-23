@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MIX_ENV=cypress mix ecto.reset # Need a blank database
+MIX_ENV=cypress mix ecto.reset > /dev/null 2>&1
 MIX_ENV=cypress mix phx.server &
 pid=$! # Store server pid
 ./assets/node_modules/.bin/cypress open

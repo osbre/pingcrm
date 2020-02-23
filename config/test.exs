@@ -20,9 +20,9 @@ config :ping, PingWeb.Endpoint,
   http: [port: 4002],
   server: true
 
+# wallaby
 config :ping, :sql_sandbox, true
 
 config :wallaby,
   driver: Wallaby.Experimental.Chrome,
-  # enable/disable
   chrome: [headless: true]

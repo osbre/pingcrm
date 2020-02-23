@@ -1,21 +1,23 @@
 defmodule Ping.UserFactory do
   alias Ping.Repo
-  alias Ping.Accounts.{Account, User}
+  alias Ping.Accounts.User
 
   # Factories
   def build(:user) do
-    %User{
+    %{
       first_name: "test",
       last_name: "test",
       email: "test@test.com",
       password: "123123123",
-      owner: "false",
+      password_confirmation: "123123123",
+      # password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("123123123"),
+      owner: false,
       account: build(:account)
     }
   end
 
   def build(:account) do
-    %Account{name: "test account"}
+    %{name: "test account"}
   end
 
   # Convenience API
@@ -23,7 +25,9 @@ defmodule Ping.UserFactory do
     factory_name |> build() |> struct(attributes)
   end
 
-  def insert!(factory_name, attributes \\ []) do
-    Repo.insert!(build(factory_name, attributes))
+  def insert!(:user, _attributes \\ []) do
+    %User{}
+    |> User.seed_changeset(build(:user))
+    |> Repo.insert()
   end
 end

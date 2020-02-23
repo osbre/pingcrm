@@ -1,6 +1,5 @@
 defmodule Ping.UserFactory do
   alias Ping.Repo
-  alias Ping.Accounts
   alias Ping.Accounts.{Account, User}
 
   # Factories

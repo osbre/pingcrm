@@ -5,17 +5,18 @@ defmodule Ping.UserFactory do
   # Factories
   def build(:user) do
     %User{
-      first_name: "test",
-      last_name: "test",
-      email: "test@test.com",
-      password: "123123123",
-      owner: "false",
-      account: build(:account)
+      first_name: Faker.Name.first_name(),
+      last_name: Faker.Name.last_name(),
+      email: Faker.Internet.email(),
+      password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("supersecret"),
+      owner: false,
+      account: build(:account),
+      trashed_at: nil
     }
   end
 
   def build(:account) do
-    %Account{name: "test account"}
+    %Account{name: "Test Account"}
   end
 
   # Convenience API

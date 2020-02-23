@@ -10,7 +10,6 @@ config :ping, Ping.Repo,
 # Configure the database for GitHub Actions
 if System.get_env("GITHUB_ACTIONS") do
   config :ping, Ping.Repo,
-    hostname: "postgres",
     username: "postgres",
     password: "postgres"
 end

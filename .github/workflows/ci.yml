@@ -48,5 +48,4 @@ jobs:
       - run: mix deps.get
       - run: npm install --prefix assets
       - run: npm run deploy --prefix assets
-      # - run: mix check
       - run: mix test

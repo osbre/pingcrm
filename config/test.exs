@@ -1,5 +1,12 @@
 use Mix.Config
 
+# wallaby
+config :ping, :sql_sandbox, true
+
+config :wallaby,
+  driver: Wallaby.Experimental.Chrome,
+  chrome: [headless: true]
+
 # Configure your database
 config :ping, Ping.Repo,
   username: "postgres",
@@ -19,10 +26,3 @@ config :logger, level: :warn
 config :ping, PingWeb.Endpoint,
   http: [port: 4002],
   server: true
-
-# wallaby
-config :ping, :sql_sandbox, true
-
-config :wallaby,
-  driver: Wallaby.Experimental.Chrome,
-  chrome: [headless: true]

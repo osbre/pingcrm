@@ -37,8 +37,7 @@ defmodule PingWeb.Features.LoginTest do
       |> fill_in(@email_field, with: @email)
       |> fill_in(@password_field, with: @password)
       |> click(@login_button)
-
-      # |> assert_has(css("h1", text: "Dashboard"))
+      |> assert_has(css("h1", text: "Dashboard"))
     end
   end
 end

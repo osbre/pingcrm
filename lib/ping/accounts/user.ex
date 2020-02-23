@@ -59,6 +59,17 @@ defmodule Ping.Accounts.User do
     |> pow_password_changeset(attrs)
   end
 
+  def seed_changeset(user_or_changeset, attrs) do
+    attrs = put_password_confirmation(attrs)
+
+    user_or_changeset
+    |> cast(attrs, @general_fields)
+    |> validate_required([:first_name, :last_name])
+    |> put_assoc(:account, attrs.account)
+    |> pow_changeset(attrs)
+    |> pow_password_changeset(attrs)
+  end
+
   defp put_password_confirmation(attrs) do
     case has_password_confirmation?(attrs) do
       true -> attrs
@@ -67,6 +78,10 @@ defmodule Ping.Accounts.User do
   end
 
   defp has_password_confirmation?(%{"password_confirmation" => password_confirmation})
+       when is_binary(password_confirmation) and password_confirmation != "",
+       do: true
+
+  defp has_password_confirmation?(%{password_confirmation: password_confirmation})
        when is_binary(password_confirmation) and password_confirmation != "",
        do: true
 

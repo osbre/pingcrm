@@ -48,11 +48,14 @@ defmodule Ping.MixProject do
       {:upload, "~> 0.1.0"},
       {:scrivener_ecto, "~> 2.0"},
       {:scrivener_list, "~> 2.0"},
-      {:ex_check, ">= 0.0.0", only: :dev, runtime: false},
-      {:credo, ">= 0.0.0", only: :dev, runtime: false},
+      # testing
+      {:wallaby, "~> 0.23.0", runtime: false, only: :test},
+      # mix check
+      {:ex_check, ">= 0.0.0", only: [:dev, :test], runtime: false},
+      {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, ">= 0.0.0", only: :dev, runtime: false},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:sobelow, ">= 0.0.0", only: :dev, runtime: false}
+      {:ex_doc, ">= 0.0.0", only: [:dev, :test], runtime: false},
+      {:sobelow, ">= 0.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -66,17 +69,7 @@ defmodule Ping.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["assets.compile --quiet", "ecto.create --quiet", "ecto.migrate", "test"],
-      "assets.compile": &compile_assets/1,
-      "cypress.open": ["cmd ./bin/cypress.open"],
-      "cypress.ci": ["cmd ./bin/cypress.ci"],
-      "cypress.run": ["cmd ./bin/cypress.run"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
-  end
-
-  defp compile_assets(_) do
-    Mix.shell().cmd("./assets/node_modules/webpack/bin/webpack.js --mode development",
-      quiet: true
-    )
   end
 end

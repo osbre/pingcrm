@@ -3,5 +3,5 @@
 brew services restart postgresql
 
 mix ecto.reset
+MIX_ENV=test mix ecto.reset
 
-bin/start

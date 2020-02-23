@@ -1,8 +1,8 @@
 import "../css/app.css";
 import "phoenix_html";
 import React from "react";
-import {render} from "react-dom";
-import {InertiaApp} from "@inertiajs/inertia-react";
+import { render } from "react-dom";
+import { InertiaApp } from "@inertiajs/inertia-react";
 import axios from "axios";
 axios.defaults.xsrfHeaderName = "x-csrf-token";
 

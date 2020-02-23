@@ -11,7 +11,10 @@
     ## ...or adjusted (e.g. use one-line formatter for more compact credo output)
     {:credo, "mix credo --format oneline"},
     {:sobelow, false},
-    {:npm_test, false}
+    {:npm_test, false},
+    {:ex_doc, false},
+    {:ex_unit, false},
+    {:dialyzer, false}
 
     ## ...or reordered (e.g. to see output from ex_unit before others)
     # {:ex_unit, order: -1},

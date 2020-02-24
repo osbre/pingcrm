@@ -1,7 +1,7 @@
 defmodule PingWeb.UserController do
   use PingWeb, :controller
   alias Ping.Accounts
-  alias Ping.Accounts.{User, UserSearch}
+  alias Ping.Accounts.{Account, User, UserSearch}
   alias Ping.Repo
   import PingWeb.Utils
 
@@ -33,9 +33,12 @@ defmodule PingWeb.UserController do
   end
 
   def create(conn, user_params) do
+    account_changeset =
+      Account.changeset(%Account{}, user_params["account"] || %{name: "Account"})
+
     %User{}
     |> User.admin_changeset(user_params)
-    |> Ecto.Changeset.put_assoc(:account, Accounts.get_account!(1))
+    |> Ecto.Changeset.put_assoc(:account, account_changeset)
     |> Repo.insert()
     |> case do
       {:ok, _} ->

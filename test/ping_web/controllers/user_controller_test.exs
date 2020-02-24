@@ -60,6 +60,24 @@ defmodule PingWeb.UserControllerTest do
     end
   end
 
+  describe "delete user" do
+    setup [:create_user]
+
+    test "redirects to user index", %{conn: conn, user: user} do
+      conn = delete(conn, Routes.user_path(conn, :delete, user.id))
+      assert redirected_to(conn) == Routes.user_path(conn, :index)
+    end
+  end
+
+  describe "restore user" do
+    test "redirects to user index", %{conn: conn} do
+      now = DateTime.utc_now() |> DateTime.truncate(:second)
+      user = Factory.insert!(:user, trashed_at: now)
+      conn = delete(conn, Routes.user_path(conn, :delete, user.id))
+      assert redirected_to(conn) == Routes.user_path(conn, :index)
+    end
+  end
+
   defp create_user(_), do: {:ok, user: Factory.insert!(:user)}
 
   defp build_user(_) do

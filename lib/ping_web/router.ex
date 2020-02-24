@@ -34,6 +34,8 @@ defmodule PingWeb.Router do
 
   scope "/", PingWeb do
     pipe_through [:browser, :protected]
+    get "/500", DashboardController, :error_500
+    get "/404", DashboardController, :error_404
 
     get "/", DashboardController, :index
 

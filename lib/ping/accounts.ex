@@ -23,6 +23,12 @@ defmodule Ping.Accounts do
     Repo.all(User)
   end
 
+  def create_user(user_attrs) do
+    %User{}
+    |> User.changeset(user_attrs)
+    |> Repo.insert()
+  end
+
   def create_user!(user_attrs) do
     %User{}
     |> User.changeset(user_attrs)

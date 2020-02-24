@@ -81,15 +81,6 @@ defmodule PingWeb.UserControllerTest do
   defp create_user(_), do: {:ok, user: Factory.insert!(:user)}
 
   defp build_user(_) do
-    data = Factory.build(:user)
-
-    {:ok,
-     attrs: %{
-       account: %{name: "Account"},
-       first_name: data.first_name,
-       last_name: data.last_name,
-       email: data.email,
-       password: "supersecret"
-     }}
+    {:ok, attrs: Factory.build(:user_map)}
   end
 end
